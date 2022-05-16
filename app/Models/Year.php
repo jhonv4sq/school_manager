@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Trimester extends Model
+class Year extends Model
 {
     use HasFactory;
 
@@ -13,11 +13,11 @@ class Trimester extends Model
         'number',
     ];
 
-    public function year() {
-        return $this->belongsTo(Year::class);
+    public function course() {
+        return $this->belongsTo(Course::class);
     }
 
-    public function garde() {
-        return $this->hasMany(Garde::class);
+    public function trimester() {
+        return $this->hasMany(Trimester::class);
     }
 }

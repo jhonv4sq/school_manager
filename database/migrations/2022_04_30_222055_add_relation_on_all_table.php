@@ -19,6 +19,10 @@ return new class extends Migration
         });
 
         Schema::table('trimesters', function (Blueprint $table){
+            $table->foreign('year_id')->references('id')->on('years');
+        });
+
+        Schema::table('years', function (Blueprint $table){
             $table->foreign('course_id')->references('id')->on('courses');
         });
         

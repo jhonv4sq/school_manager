@@ -17,7 +17,7 @@ class Course extends Model
         return $this->belongsToMany(User::class);
     }
 
-    public function trimester() {
-        return $this->hasMany(Trimester::class);
+    public function year() {
+        return $this->hasMany(Year::class);
     }
 }

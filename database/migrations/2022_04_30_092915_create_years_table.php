@@ -13,13 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('trimesters', function (Blueprint $table) {
+        Schema::create('years', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('year_id');
+            $table->unsignedBigInteger('course_id');
 
             $table->integer('number');
 
             $table->timestamps();
+
 
         });
     }
@@ -31,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('trimesters');
+        Schema::dropIfExists('years');
     }
 };
