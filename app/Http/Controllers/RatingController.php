@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Course;
+use App\Models\Rating;
 use Illuminate\Http\Request;
 
-class CourseController extends Controller
+class RatingController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class CourseController extends Controller
      */
     public function index()
     {
-        $courses = Course::all();
-        return view('courses.index', compact('courses'));
+        $ratings = Rating::all();
+        return view('ratings.index', compact('ratings'));
     }
 
     /**
@@ -25,7 +25,7 @@ class CourseController extends Controller
      */
     public function create()
     {
-        return view('courses.create');
+        return view('ratings.create');
     }
 
     /**
@@ -36,64 +36,62 @@ class CourseController extends Controller
      */
     public function store(Request $request)
     {
-        $newCourse = [
-            'name' => $request['name'],
-            'master' => $request['master'],
+        $newrating = [
+            'number' => $request['number'],
         ];
-        Course::create($newCourse);
+        rating::create($newrating);
 
-        return redirect()->route('courses.index');
+        return redirect()->route('ratings.index');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Course  $course
+     * @param  \App\Models\Rating  $rating
      * @return \Illuminate\Http\Response
      */
-    public function show(Course $course)
+    public function show(Rating $rating)
     {
-        return view('courses.show', compact('course'));
+        return view('ratings.show', compact('rating'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Course  $course
+     * @param  \App\Models\Rating  $rating
      * @return \Illuminate\Http\Response
      */
-    public function edit(Course $course)
+    public function edit(Rating $rating)
     {
-        return view('courses.edit', compact('course'));
+        return view('ratings.edit', compact('rating'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Course  $course
+     * @param  \App\Models\Rating  $rating
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Course $course)
+    public function update(Request $request, Rating $rating)
     {
-        $editCourse = [
-            'name' => $request['name'],
-            'master' => $request['master'],
+        $editrating = [
+            'number' => $request['number'],
         ];
-        $course->update($editCourse);
-        return redirect()->route('courses.index');
+        $rating->update($editrating);
+        return redirect()->route('ratings.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Course  $course
+     * @param  \App\Models\Rating  $rating
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Course $course)
+    public function destroy(Rating $rating)
     {
-     $course->delete();
+     $rating->delete();
 
-      return redirect()->route('courses.index');
+      return redirect()->route('ratings.index');
     }
 }

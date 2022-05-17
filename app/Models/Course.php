@@ -10,7 +10,8 @@ class Course extends Model
     use HasFactory;
 
     protected $fillable = [
-        'number',
+        'name',
+        'master',
     ];
 
     public function user(){

@@ -26,7 +26,7 @@ return new class extends Migration
             $table->foreign('course_id')->references('id')->on('courses');
         });
         
-        Schema::table('gardes', function (Blueprint $table){
+        Schema::table('ratings', function (Blueprint $table){
             $table->foreign('trimester_id')->references('id')->on('trimesters');
         });
     }

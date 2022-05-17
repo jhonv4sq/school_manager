@@ -1,5 +1,8 @@
 <?php
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\CourseController;
+use App\Http\Controllers\RatingController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -19,3 +22,7 @@ Route::get('/', [LoginController::class, 'index'])->name('auth.login');
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::resource('ratings', RatingController::class);
+
+Route::resource('courses', CourseController::class);
