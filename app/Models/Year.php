@@ -16,8 +16,4 @@ class Year extends Model
     public function course() {
         return $this->belongsTo(Course::class);
     }
-
-    public function trimester() {
-        return $this->hasMany(Trimester::class);
-    }
 }

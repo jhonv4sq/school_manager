@@ -13,13 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
+        Schema::table('rol_user', function (Blueprint $table){
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('rol_id')->references('id')->on('rols');
+        });
+
         Schema::table('course_user', function (Blueprint $table){
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('course_id')->references('id')->on('courses');
-        });
-
-        Schema::table('trimesters', function (Blueprint $table){
-            $table->foreign('year_id')->references('id')->on('years');
         });
 
         Schema::table('years', function (Blueprint $table){
@@ -27,7 +28,8 @@ return new class extends Migration
         });
         
         Schema::table('ratings', function (Blueprint $table){
-            $table->foreign('trimester_id')->references('id')->on('trimesters');
+            $table->foreign('year_id')->references('id')->on('years');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

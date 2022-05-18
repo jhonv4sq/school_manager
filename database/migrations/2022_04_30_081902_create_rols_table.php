@@ -13,16 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('years', function (Blueprint $table) {
+        Schema::create('rols', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('course_id');
-
-            $table->integer('number');
-            $table->integer('trimester');
-
+            $table->string('name');
             $table->timestamps();
-
-
         });
     }
 
@@ -33,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('years');
+        Schema::dropIfExists('rols');
     }
 };

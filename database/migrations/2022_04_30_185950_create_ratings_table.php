@@ -15,7 +15,8 @@ return new class extends Migration
     {
         Schema::create('ratings', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('trimester_id')->nullable();
+            $table->unsignedBigInteger('year_id')->nullable();
+            $table->unsignedBigInteger('user_id')->nullable();
 
             $table->integer('number');
 
