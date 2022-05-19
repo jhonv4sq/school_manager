@@ -14,7 +14,15 @@
                         </div>
                     @endif
 
-                    {{ __('You are logged in!') }}
+                    @if (Auth::user()->rol[0]->id == 1)
+                        <p>has entrado como estudiante</p>
+                    @endif
+                    @if (Auth::user()->rol[0]->id == 2)
+                        <p>has entrado como maestro</p>
+                    @endif
+                    @if (Auth::user()->rol[0]->id == 3)
+                        <p>has entrado como director</p>
+                    @endif
                 </div>
             </div>
         </div>

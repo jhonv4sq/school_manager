@@ -23,7 +23,7 @@ Route::get('/auth/register', [RegisterController::class, 'index'])->name('auth.r
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('auth');
 
 Route::resource('ratings', RatingController::class);
 

@@ -47,8 +47,7 @@ class RegisterController extends Controller
     public function index()
     {
         $rols = Rol::All();
-        dd($rols);
-        return view('auth.register');
+        return view('auth.register', compact('rols'));
     }
 
     /**
@@ -95,12 +94,14 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user =  User::create([
             'name' => $data['name'],
             'lastName' => $data['lastName'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+
+        return $user->rol()->attach($data['userType']);
     }
 
 
