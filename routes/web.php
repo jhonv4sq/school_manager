@@ -25,6 +25,6 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('auth');
 
-Route::resource('ratings', RatingController::class);
+Route::resource('ratings', RatingController::class)->middleware('auth');
 
-Route::resource('courses', CourseController::class);
+Route::resource('courses', CourseController::class)->middleware('auth');

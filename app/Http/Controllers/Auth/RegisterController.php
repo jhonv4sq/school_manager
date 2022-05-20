@@ -9,6 +9,8 @@ use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -41,11 +43,15 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        $this->middleware('auth');
     }
 
     public function index()
     {
+        if(! Gate::allows('confirm-user')){
+            abort(403);
+        }
+
         $rols = Rol::All();
         return view('auth.register', compact('rols'));
     }
@@ -58,6 +64,10 @@ class RegisterController extends Controller
      */
     public function register(Request $request)
     {
+        if(! Gate::allows('confirm-user')){
+            abort(403);
+        }
+
         $this->validator($request->all())->validate();
 
         event(new Registered($user = $this->create($request->all())));
@@ -77,7 +87,7 @@ class RegisterController extends Controller
      * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validator(array $data)
-    {
+    {        
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'lastName' => ['required', 'string', 'max:255'],
@@ -94,6 +104,18 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $rolUser = Auth::user()->rol[0]->id;
+
+        if(! Gate::allows('confirm-user'))
+        {
+            abort(403);
+        }
+
+        if($rolUser == 2 && $data['userType'] != 1)
+        {
+            abort(403);
+        }
+
         $user =  User::create([
             'name' => $data['name'],
             'lastName' => $data['lastName'],

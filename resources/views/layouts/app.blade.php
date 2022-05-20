@@ -58,6 +58,10 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    @if (Auth::user()->rol[0]->id != 1)
+                                        <a class="dropdown-item" href="{{ route('auth.register') }}">{{ __('Registrar Usuario') }}</a>
+                                        <a class="dropdown-item" href="{{ route('courses.create') }}">{{ __('Agregar Curso') }}</a>
+                                    @endif
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

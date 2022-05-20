@@ -14,12 +14,11 @@ class Rating extends Model
         'created_at',
         'updated_at'
     ];
-
-    public function trimester() {
-        return $this->belongsTo(Trimester::class);
+    public function user(){
+        return $this->belongsTo(User::class);
     }
-    
-    public function user() {
-        return $this->hasMany(User::class);
+
+    public function course(){
+        return $this->belongsTo(Course::class);
     }
 }

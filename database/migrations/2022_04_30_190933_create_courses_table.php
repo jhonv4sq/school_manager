@@ -15,9 +15,10 @@ return new class extends Migration
     {
         Schema::create('courses', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('year_id');
 
             $table->string('name');
-            $table->string('master');
+            $table->string('master')->nullable();
 
             $table->timestamps();
         });

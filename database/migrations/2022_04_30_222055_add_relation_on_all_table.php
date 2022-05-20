@@ -23,13 +23,13 @@ return new class extends Migration
             $table->foreign('course_id')->references('id')->on('courses');
         });
 
-        Schema::table('years', function (Blueprint $table){
-            $table->foreign('course_id')->references('id')->on('courses');
+        Schema::table('courses', function (Blueprint $table){
+            $table->foreign('year_id')->references('id')->on('years');
         });
         
         Schema::table('ratings', function (Blueprint $table){
-            $table->foreign('year_id')->references('id')->on('years');
             $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('course_id')->references('id')->on('courses');
         });
     }
 

@@ -86,11 +86,11 @@
                                 <select id="userType" class="form-control @error('userType') is-invalid @enderror" name="userType" autofocus>
 
                                 @foreach ($rols as $rol)
-                                    @if ($rol->id == 1)
-                                        <option value="{{ $rol->id }}" selected>{{ $rol->name }}</option> 
+                                    @if (Auth::user()->rol[0]->id == 2 && $rol->id == 1)
+                                        <option value="{{ $rol->id }}">{{ $rol->name }}</option>
                                     @endif
-                                    @if ($rol->id != 1)
-                                        <option value="{{ $rol->id }}">{{ $rol->name }}</option> 
+                                    @if (Auth::user()->rol[0]->id != 2)
+                                        <option value="{{ $rol->id }}">{{ $rol->name }}</option>
                                     @endif
                                 @endforeach
 

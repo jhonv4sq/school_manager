@@ -52,4 +52,8 @@ class User extends Authenticatable
     public function course(){
         return $this->belongsToMany(Course::class);
     }
+
+    public function rating(){
+        return $this->hasMany(Rating::class);
+    }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Course;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class CourseController extends Controller
 {
@@ -14,6 +15,11 @@ class CourseController extends Controller
      */
     public function index()
     {
+        if(! Gate::allows('confirm-user'))
+        {
+            abort(403);
+        }
+
         $courses = Course::all();
         return view('courses.index', compact('courses'));
     }
@@ -25,6 +31,10 @@ class CourseController extends Controller
      */
     public function create()
     {
+        if(! Gate::allows('confirm-user'))
+        {
+            abort(403);
+        }
         return view('courses.create');
     }
 
@@ -36,6 +46,10 @@ class CourseController extends Controller
      */
     public function store(Request $request)
     {
+        if(! Gate::allows('confirm-user'))
+        {
+            abort(403);
+        }
         $newCourse = [
             'name' => $request['name'],
             'master' => $request['master'],
@@ -53,6 +67,10 @@ class CourseController extends Controller
      */
     public function show(Course $course)
     {
+        if(! Gate::allows('confirm-user'))
+        {
+            abort(403);
+        }
         return view('courses.show', compact('course'));
     }
 
@@ -76,6 +94,10 @@ class CourseController extends Controller
      */
     public function update(Request $request, Course $course)
     {
+        if(! Gate::allows('confirm-user'))
+        {
+            abort(403);
+        }
         $editCourse = [
             'name' => $request['name'],
             'master' => $request['master'],
@@ -92,8 +114,13 @@ class CourseController extends Controller
      */
     public function destroy(Course $course)
     {
-     $course->delete();
+        if(! Gate::allows('confirm-user'))
+        {
+            abort(403);
+        }
 
-      return redirect()->route('courses.index');
+        $course->delete();
+
+        return redirect()->route('courses.index');
     }
 }

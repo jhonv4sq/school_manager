@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Year;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class YearController extends Controller
 {
@@ -24,7 +25,10 @@ class YearController extends Controller
      */
     public function create()
     {
-        //
+        if(! Gate::allows('confirm-user'))
+        {
+            abort(403);
+        }
     }
 
     /**
@@ -35,7 +39,10 @@ class YearController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if(! Gate::allows('confirm-user'))
+        {
+            abort(403);
+        }
     }
 
     /**
@@ -57,7 +64,10 @@ class YearController extends Controller
      */
     public function edit(Year $year)
     {
-        //
+        if(! Gate::allows('confirm-user'))
+        {
+            abort(403);
+        }
     }
 
     /**
@@ -69,7 +79,10 @@ class YearController extends Controller
      */
     public function update(Request $request, Year $year)
     {
-        //
+        if(! Gate::allows('confirm-user'))
+        {
+            abort(403);
+        }
     }
 
     /**
@@ -80,6 +93,9 @@ class YearController extends Controller
      */
     public function destroy(Year $year)
     {
-        //
+        if(! Gate::allows('confirm-user'))
+        {
+            abort(403);
+        }
     }
 }

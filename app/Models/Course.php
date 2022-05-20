@@ -18,7 +18,12 @@ class Course extends Model
         return $this->belongsToMany(User::class);
     }
 
-    public function year() {
-        return $this->hasMany(Year::class);
+    public function rating(){
+        return $this->hasMany(Rating::class);
     }
+
+    public function year(){
+        return $this->belongsTo(Year::class);
+    }
+    
 }

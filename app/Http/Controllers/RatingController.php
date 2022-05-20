@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Rating;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class RatingController extends Controller
 {
@@ -25,6 +26,10 @@ class RatingController extends Controller
      */
     public function create()
     {
+        if(! Gate::allows('confirm-user'))
+        {
+            abort(403);
+        }
         return view('ratings.create');
     }
 
@@ -36,6 +41,11 @@ class RatingController extends Controller
      */
     public function store(Request $request)
     {
+        if(! Gate::allows('confirm-user'))
+        {
+            abort(403);
+        }
+
         $newrating = [
             'number' => $request['number'],
         ];
@@ -63,6 +73,10 @@ class RatingController extends Controller
      */
     public function edit(Rating $rating)
     {
+        if(! Gate::allows('confirm-user'))
+        {
+            abort(403);
+        }
         return view('ratings.edit', compact('rating'));
     }
 
@@ -75,6 +89,11 @@ class RatingController extends Controller
      */
     public function update(Request $request, Rating $rating)
     {
+        if(! Gate::allows('confirm-user'))
+        {
+            abort(403);
+        }
+
         $editrating = [
             'number' => $request['number'],
         ];
@@ -90,8 +109,12 @@ class RatingController extends Controller
      */
     public function destroy(Rating $rating)
     {
-     $rating->delete();
+        if(! Gate::allows('confirm-user'))
+        {
+            abort(403);
+        }
+        $rating->delete();
 
-      return redirect()->route('ratings.index');
+        return redirect()->route('ratings.index');
     }
 }
