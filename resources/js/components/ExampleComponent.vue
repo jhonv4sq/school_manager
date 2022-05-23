@@ -6,7 +6,7 @@
                     <div class="card-header">Example Component</div>
 
                     <div class="card-body">
-                        I'm an example component.
+                        <p class="text-2xl font-bold text-green-700">Vue 3 App</p>
                     </div>
                 </div>
             </div>
