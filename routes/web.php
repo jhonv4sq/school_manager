@@ -3,6 +3,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\RatingController;
+use App\Http\Controllers\YearController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -23,8 +24,11 @@ Route::get('/auth/register', [RegisterController::class, 'index'])->name('auth.r
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('auth');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::resource('ratings', RatingController::class)->middleware('auth');
+Route::resource('ratings', RatingController::class);
 
-Route::resource('courses', CourseController::class)->middleware('auth');
+Route::resource('courses', CourseController::class);
+
+Route::get('/years/create', [YearController::class, 'create'])->name('years.create');
+Route::get('/years/close', [YearController::class, 'close'])->name('years.close');

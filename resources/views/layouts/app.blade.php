@@ -60,6 +60,8 @@
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                     @if (Auth::user()->rol[0]->id != 1)
                                         <a class="dropdown-item" href="{{ route('auth.register') }}">{{ __('Registrar Usuario') }}</a>
+                                        <a class="dropdown-item" href="{{ route('years.create') }}">{{ __('Abrir  Año Escolar') }}</a>
+                                        <a class="dropdown-item" href="{{ route('years.close') }}">{{ __('Cerrar  Año Escolar') }}</a>
                                         <a class="dropdown-item" href="{{ route('courses.create') }}">{{ __('Agregar Curso') }}</a>
                                     @endif
                                     <a class="dropdown-item" href="{{ route('logout') }}"

@@ -26,8 +26,14 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        Gate::define('confirm-user', function (User $user){
-            return $user->rol[0]->id != 1;
+        // Verifica si el usuario no es un estudiante solo le da acceso al profesor y al director.
+        Gate::define('confirm-master', function (User $user){
+            $id = $user->rol->first()->id;
+            return in_array($id, [2,3]);
+        });
+        // Solo verifica si el usuario es un director.
+        Gate::define('confirm-principal', function (User $user){
+            return $user->rol->first()->id == 3;
         });
 
     }

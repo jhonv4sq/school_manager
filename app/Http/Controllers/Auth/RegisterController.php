@@ -48,7 +48,7 @@ class RegisterController extends Controller
 
     public function index()
     {
-        if(! Gate::allows('confirm-user')){
+        if(! Gate::allows('confirm-master')){
             abort(403);
         }
 
@@ -64,7 +64,7 @@ class RegisterController extends Controller
      */
     public function register(Request $request)
     {
-        if(! Gate::allows('confirm-user')){
+        if(! Gate::allows('confirm-master')){
             abort(403);
         }
 
@@ -106,8 +106,7 @@ class RegisterController extends Controller
     {
         $rolUser = Auth::user()->rol[0]->id;
 
-        if(! Gate::allows('confirm-user'))
-        {
+        if(! Gate::allows('confirm-master')){
             abort(403);
         }
 

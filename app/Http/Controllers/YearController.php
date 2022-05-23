@@ -4,10 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Models\Year;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 
 class YearController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -25,10 +30,43 @@ class YearController extends Controller
      */
     public function create()
     {
-        if(! Gate::allows('confirm-user'))
+        if(! Gate::allows('confirm-principal'))
         {
             abort(403);
         }
+
+        $years = Year::All();
+
+        if($years->isNotEmpty() == true && $years->last()->isOpen == true)
+        {
+            abort(403);
+        }
+
+        Year::create([
+            'number' => sizeof($years) + 1,
+        ]);
+        return redirect()->back();
+    }
+
+    public function close()
+    {
+        if(! Gate::allows('confirm-principal'))
+        {
+            abort(403);
+        }
+
+        $years = Year::All();
+
+        if($years->isNotEmpty() == true && $years->last()->isOpen == true)
+        {
+            $lastYear = $years->last();
+            $closeYear['isOpen'] = false;
+            $lastYear->update($closeYear);
+            return redirect()->back();
+        }
+
+        return abort(403);
+
     }
 
     /**
@@ -39,10 +77,7 @@ class YearController extends Controller
      */
     public function store(Request $request)
     {
-        if(! Gate::allows('confirm-user'))
-        {
-            abort(403);
-        }
+        //
     }
 
     /**
@@ -64,10 +99,7 @@ class YearController extends Controller
      */
     public function edit(Year $year)
     {
-        if(! Gate::allows('confirm-user'))
-        {
-            abort(403);
-        }
+        //
     }
 
     /**
@@ -79,10 +111,7 @@ class YearController extends Controller
      */
     public function update(Request $request, Year $year)
     {
-        if(! Gate::allows('confirm-user'))
-        {
-            abort(403);
-        }
+        //
     }
 
     /**
@@ -93,9 +122,6 @@ class YearController extends Controller
      */
     public function destroy(Year $year)
     {
-        if(! Gate::allows('confirm-user'))
-        {
-            abort(403);
-        }
+        //
     }
 }

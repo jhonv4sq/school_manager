@@ -8,6 +8,10 @@ use Illuminate\Support\Facades\Gate;
 
 class RatingController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,6 +19,10 @@ class RatingController extends Controller
      */
     public function index()
     {
+        if(! Gate::allows('confirm-master')){
+            abort(403);
+        }
+
         $ratings = Rating::all();
         return view('ratings.index', compact('ratings'));
     }
@@ -26,10 +34,10 @@ class RatingController extends Controller
      */
     public function create()
     {
-        if(! Gate::allows('confirm-user'))
-        {
+        if(! Gate::allows('confirm-master')){
             abort(403);
         }
+
         return view('ratings.create');
     }
 
@@ -41,16 +49,15 @@ class RatingController extends Controller
      */
     public function store(Request $request)
     {
-        if(! Gate::allows('confirm-user'))
-        {
+        if(! Gate::allows('confirm-master')){
             abort(403);
         }
 
         $newrating = [
             'number' => $request['number'],
         ];
-        rating::create($newrating);
 
+        Rating::create($newrating);
         return redirect()->route('ratings.index');
     }
 
@@ -62,6 +69,10 @@ class RatingController extends Controller
      */
     public function show(Rating $rating)
     {
+        if(! Gate::allows('confirm-master')){
+            abort(403);
+        }
+
         return view('ratings.show', compact('rating'));
     }
 
@@ -73,10 +84,10 @@ class RatingController extends Controller
      */
     public function edit(Rating $rating)
     {
-        if(! Gate::allows('confirm-user'))
-        {
+        if(! Gate::allows('confirm-master')){
             abort(403);
         }
+
         return view('ratings.edit', compact('rating'));
     }
 
@@ -89,8 +100,7 @@ class RatingController extends Controller
      */
     public function update(Request $request, Rating $rating)
     {
-        if(! Gate::allows('confirm-user'))
-        {
+        if(! Gate::allows('confirm-master')){
             abort(403);
         }
 
@@ -109,12 +119,11 @@ class RatingController extends Controller
      */
     public function destroy(Rating $rating)
     {
-        if(! Gate::allows('confirm-user'))
-        {
+        if(! Gate::allows('confirm-master')){
             abort(403);
         }
-        $rating->delete();
 
+        $rating->delete();
         return redirect()->route('ratings.index');
     }
 }

@@ -11,6 +11,7 @@ class Year extends Model
 
     protected $fillable = [
         'number',
+        'isOpen',
     ];
 
     public function course(){

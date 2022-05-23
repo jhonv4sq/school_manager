@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
 
             $table->integer('number');
+            $table->boolean('isOpen')->default(true);
 
             $table->timestamps();
 
