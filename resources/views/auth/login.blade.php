@@ -18,7 +18,7 @@
 
                     <form method="POST" action="{{ route('login') }}" class="px-4 lg:px-10">
                         @csrf
-                        <div class="flex flex-col mb-3">
+                        {{-- <div class="flex flex-col mb-3">
                             <label class="uppercase text-gray-700 text-xs font-bold mb-2">Correo electronico</label>
                             <input type="email" class="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full text-xs font-bold @error('email') is-invalid @enderror"
                             name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
@@ -51,13 +51,17 @@
                             <button type="submit" class="bg-gray-900 text-white active:bg-gray-700 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full">
                                 Iniciar sesión  
                             </button>
+                        </div> --}}
+                        <div>
+                            <login-form />
                         </div>
+
                         @if (Route::has('password.request'))
                             <a class="btn btn-link" href="{{ route('password.request') }}">
                                 {{ __('Forgot Your Password?') }}
                             </a>
                         @endif
-
+                        
                     </form>
 
                 </div>
