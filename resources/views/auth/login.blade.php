@@ -3,13 +3,16 @@
 @section('content')
 
 <section class="absolute top-0 h-screen w-full bg-gray-900 z-0">
+
     <div class="absolute h-full w-full opacity-70" style="background-image: url('https://media.istockphoto.com/vectors/cute-vector-kawaii-penguin-chicks-with-scholar-hatspencils-notebooks-vector-id1280525680?b=1&k=20&m=1280525680&s=612x612&w=0&h=4YpcCoo0BoZKvYelOcrtRSW_OZXpGpnlyzXHpYYgmUo=')"></div>
     <div class="container mx-auto px-4 h-full">
-        <div class="flex content-center items-center justify-center h-screen">
-            
+        <div class="flex flex-col content-center items-center justify-center h-screen">
+
+            <img class="relative" src='https://i.postimg.cc/jSRcN6XR/schoolmanager.png' />
+
             <div class="relative w-full lg:w-3/12 px-4 mt-5">
                 <div class="bg-gray-300 border-0 drop-shadow-lg rounded-lg flex flex-col">
-                    <p class="text-gray-600 text-center text-base font-bold mt-4 mb-3">
+                    <p class="text-gray-600 text-center text-base font-bold mt-3 mb-3">
                         Introduce tus credenciales
                     </p>
 
