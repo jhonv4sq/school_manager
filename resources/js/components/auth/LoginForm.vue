@@ -8,7 +8,11 @@
     <div class="flex flex-col mb-3">
       <label class="uppercase text-gray-700 text-xs font-bold mb-2"
         >Contraseña</label>
-      <password-input v-model="password" />
+        <!-- <font-awesome-icon icon="fa-eye-slash" id="slash" /> -->
+      <div class="relative flex justify-end items-center">
+        <password-input v-model="password" />
+        <font-awesome-icon :icon="eye" id="eye" @click.prevent="show()" class="absolute cursor-pointer mr-2 opacity-60 hover:opacity-80"/>
+      </div>
     </div>
     <div
       class="inline-flex items-center cursor-pointer appearance-none focus:outline-none mb-3"
@@ -39,6 +43,23 @@ export default {
     return {
       email: '',
       password: '',
+      eye: 'fa-eye',
+
+    }
+  },
+  methods:{
+    show() {
+      let input = document.getElementById('password');
+      switch(input.type){
+        case 'password':
+          input.type = 'text';
+          this.eye = 'fa-eye-slash';
+          break;
+        case 'text':
+          input.type = 'password';
+          this.eye = 'fa-eye';
+          break;
+      }
     }
   }
 };

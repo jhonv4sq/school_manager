@@ -30,6 +30,7 @@ export default {
             'px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full text-xs font-bold',
           type: 'email',
           name: 'email',
+          id: 'email',
         },
       },
       'password-input': {
@@ -39,6 +40,7 @@ export default {
             'px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full text-xs font-bold',
           type: 'password',
           name: 'password',
+          id: 'password',
         },
       },
       't-checkbox': {
