@@ -28,6 +28,7 @@ Vue.component('font-awesome-icon', FontAwesomeIcon);
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('login-form', require('./components/auth/LoginForm.vue').default);
+Vue.component('nav-bar', require('./components/NavBar.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

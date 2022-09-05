@@ -25,6 +25,7 @@
                     @endif
                 </div>
             </div>
+            <nav-bar />
         </div>
     </div>
 </div>
